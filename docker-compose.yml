@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  pgadmin:
+    container_name: pgadmin4_4_24
+    hostname: pgadmin4
+    image: dpage/pgadmin4:4.24
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "user@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "MySecretPassword"
+    volumes:
+       - pgadmin:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - postgres
+    restart: unless-stopped
+    tty: true
+    cpu_count: 2
+    cpu_percent: 50
+    cpus: 0.5
+    mem_limit: 2048m
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+    pgadmin:
