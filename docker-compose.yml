@@ -20,6 +20,16 @@ services:
     cpu_percent: 50
     cpus: 0.5
     mem_limit: 2048m
+  psqldb:
+    image: postgres:13.1
+    container_name: psqldb
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: SsS111111
+    ports:
+      - "30346:5432" 
+    tty: true
+    hostname: psqldb
 
 networks:
   postgres:
